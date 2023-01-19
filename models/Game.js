@@ -1,7 +1,9 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const { Sequelize, DataTypes, HasOne } = require("sequelize");
 const sequelize = "../db/connection.js";
+import Statistic from "./Statistic";
+import Team from "./Team";
 
-const User = sequelize.define(
+const Game = sequelize.define(
   "Game",
   {
     game_id: {
@@ -10,13 +12,13 @@ const User = sequelize.define(
       autoIncrement: true,
     },
     team_1: {
-      type: DataTypes.ARRAY,
+      type: DataTypes.UUID,
     },
     team_2: {
-      type: DataTypes.ARRAY,
+      type: DataTypes.UUID,
     },
     statistics: {
-      type: DataTypes.ARRAY,
+      type: DataTypes.UUID,
     },
     game_date: {
       type: DataTypes.DATE,
@@ -29,3 +31,8 @@ const User = sequelize.define(
     freezeTableName: true,
   }
 );
+
+Game.HasMany(Team, { foreignKey: "team_ids", sourceKey: "team_id" });
+Game.HasMany(Statistic,{ foreignKey: "statistics", sourceKey: "statistic_id"});
+
+export default Game;

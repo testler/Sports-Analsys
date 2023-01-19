@@ -1,3 +1,6 @@
+import Game from "./Game";
+import Player from "./Player";
+
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = "../db/connection.js";
 
@@ -34,13 +37,18 @@ const Statistic = sequelize.define(
       type: DataTypes.INTEGER,
     },
     player_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
     },
     game_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
     },
   },
   {
     freezeTableName: true,
   }
 );
+
+Statistic.player_id.hasOne(Player);
+Statistic.game_id.hasOne(Game);
+
+export default Statistic;

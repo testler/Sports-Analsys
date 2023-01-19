@@ -1,19 +1,15 @@
 const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize("database", "username", "password", {
-  host: "localhost:3306",
+const sequelize = new Sequelize("ligoAssement", process.env.DB_USERNAME, process.env.DB_PASSWORD, {
+  host: "127.0.0.1",
+  port:3306,
   dialect: "mysql",
-  username: process.env.username,
-  password: process.env.password,
-  database: "ligoAssement",
 });
 
 
-try {
-  await sequelize.authenticate();
-  console.log("Connection has been established successfully.");
-} catch (error) {
-  console.error("Unable to connect to the database:", error);
-}
+sequelize.authenticate()
+.then(()=>{console.log("Connection has been established successfully.")})
+.catch((err)=>{console.error("Unable to connect to the database:", err)});
+
 
 return sequelize;

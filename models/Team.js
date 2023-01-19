@@ -1,3 +1,6 @@
+import Game from "./Game";
+import Player from "./Player";
+
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = "../db/connection.js";
 
@@ -19,13 +22,18 @@ const Team = sequelize.define(
       type: DataTypes.STRING,
     },
     game_ids: {
-      type: DataTypes.ARRAY,
+      type: DataTypes.UUID,
     },
     player_ids: {
-      type: DataTypes.ARRAY,
+      type: DataTypes.UUID,
     },
   },
   {
     freezeTableName: true,
   }
 );
+
+Team.game_ids.hasMany(Game);
+Team.player_ids.hasMany(Player);
+
+export default Team;
