@@ -24,6 +24,10 @@ At it's current version there are only 2 endpoints:
 1. GET "localhost:8000/Statistic/"
 2. POST "localhost:8000/Statistic/"
 
+## Database configuration
+
+![database structure]("./database_structure.png)
+
 ## Final notes
 
 You'll notice that there are a few data point missing such a PlayerId, I still need to fine tune that to get it working, but for this assement I felt that time was more important.
