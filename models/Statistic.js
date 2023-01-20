@@ -1,10 +1,7 @@
-import Game from "./Game";
-import Player from "./Player";
-
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = "../db/connection.js";
+const sequelize = require("../db/connection.js");
 
-const Statistic = sequelize.define(
+const statisticShema = sequelize.define(
   "Statistic",
   {
     statistic_id: {
@@ -21,6 +18,9 @@ const Statistic = sequelize.define(
     at_bats: {
       type: DataTypes.INTEGER,
     },
+    runs:{
+        type: DataTypes.INTEGER,
+    },
     hits: {
       type: DataTypes.INTEGER,
     },
@@ -36,19 +36,14 @@ const Statistic = sequelize.define(
     home_runs: {
       type: DataTypes.INTEGER,
     },
-    player_id: {
-      type: DataTypes.UUID,
-    },
-    game_id: {
-      type: DataTypes.UUID,
-    },
   },
   {
-    freezeTableName: true,
+    tableName: "Statistic",
   }
 );
 
-Statistic.player_id.hasOne(Player);
-Statistic.game_id.hasOne(Game);
 
-export default Statistic;
+const Statistic = sequelize.model("Statistic", statisticShema);
+
+
+module.exports = Statistic;

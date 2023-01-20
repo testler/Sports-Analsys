@@ -1,10 +1,7 @@
-import Game from "./Game";
-import Player from "./Player";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../db/connection.js");
 
-const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = "../db/connection.js";
-
-const Team = sequelize.define(
+const teamSchema = sequelize.define(
   "Team",
   {
     team_id: {
@@ -14,26 +11,23 @@ const Team = sequelize.define(
     },
     school_name: {
       type: DataTypes.STRING,
+      allowNull: true,
     },
     school_mascot: {
       type: DataTypes.STRING,
+      allowNull: true,
     },
     coach: {
       type: DataTypes.STRING,
-    },
-    game_ids: {
-      type: DataTypes.UUID,
-    },
-    player_ids: {
-      type: DataTypes.UUID,
+      allowNull: true,
     },
   },
   {
-    freezeTableName: true,
+    tableName: "Team",
   }
 );
 
-Team.game_ids.hasMany(Game);
-Team.player_ids.hasMany(Player);
+const Team = sequelize.model("Team", teamSchema);
 
-export default Team;
+
+module.exports = Team;

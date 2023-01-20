@@ -1,10 +1,7 @@
-import Statistic from "./Statistic";
-import Team from "./Team";
-
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = "../db/connection.js";
+const sequelize = require("../db/connection.js");
 
-const Player = sequelize.define(
+const playerSchema = sequelize.define(
   "Player",
   {
     player_id: {
@@ -14,23 +11,18 @@ const Player = sequelize.define(
     },
     full_name: {
       type: DataTypes.STRING,
+      allowNull: true,
     },
     class: {
       type: DataTypes.STRING,
     },
-    statistic_ids: {
-      type: DataTypes.UUID,
-    },
-    team_id: {
-      type: DataTypes.UUID,
-    },
   },
   {
-    freezeTableName: true,
+    tableName: "Player",
   }
 );
 
-Player.hasMany(Statistic, { foreignKey: "statistic_ids", sourceKey: "statistic_id" });
-Player.hasOne(Team, {foreignKey: "team_id", sourceKey: "team_id"});
 
-export default Player;
+const Player = sequelize.model("Player", playerSchema);
+
+module.exports = Player;
