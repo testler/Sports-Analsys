@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = require("../db/connection.js");
+const sequelize = require("../db/connection");
 
 const statisticShema = sequelize.define(
   "Statistic",
