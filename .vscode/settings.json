@@ -8,8 +8,8 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "ligoAssement",
-            "database": "ligoAssement",
+            "name": "SportsAnalsys",
+            "database": "SportsAnalsys",
             "username": "root"
         }
     ]

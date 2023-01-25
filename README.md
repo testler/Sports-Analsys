@@ -14,7 +14,7 @@ You'll need the following
 2. Navigate inside the "ligoSports directory"
 3. Run "(sudo) npm i" to install dependencies
 4. Create a .env file with 2 variables DB_PASSWORD and DB_USERNAME, this is to give this program access to your local MySQL database
-5. Run "node seed.js" this will generate the data in the database for the file.  The database is Named "LigoAssement"
+5. Run "node seed.js" this will generate the data in the database for the file.  The database is Named "SportsAnalsys"
 6. Run "node(or nodemon) server.js" to start the local server on port 8000
 
 ## Endpoints
